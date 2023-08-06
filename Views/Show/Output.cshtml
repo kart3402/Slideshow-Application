@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Slideshow.Models.slide>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link href="~/slidecss/Slideshowcss.css" rel="stylesheet"/>
+    <title>Output</title>
+</head>
+<body>
+    <div>
+        <td>
+            @Html.ActionLink("goback","Input")
+        </td>
+    </div>
+    <div class="container">
+        <div id="Mainimage">
+            
+            <img id="top" src="~/Photos/oo.jpg"/>
+
+            <div id="Heading">
+
+                <div id="details">
+
+                    @foreach (var m in Model)
+                    {
+                        @m.slide_name<br />
+                        @m.slide_id<br />
+                        @m.description_slide<br />
+                    }
+                </div>
+                <div id="ok">
+                    @foreach (var m in Model)
+                    {
+                        @Html.ActionLink("Edite", "Edit", new { @id = m.slide_id })<br />
+                        @Html.ActionLink("X", "Remove", new { @id = m.slide_id })
+                    }
+                </div>
+           
+             </div>
+
+        </div>
+    </div>
+
+        <div id="footer">
+            <div class="footercontainer">
+                @foreach (var i in Model)
+                {
+
+                    string[] data = System.Text.RegularExpressions.Regex.Split(i.slide_clips, ",");
+                    foreach (string s in data)
+                    {
+
+                        <img src="~/Photos/@i.slide_name/@s" class="footerimage" />
+                       
+                    }
+
+
+                }
+
+
+            </div>
+
+        </div>
+       
+
+    <div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('.footercontainer img').on({
+                    mousemove: function () {
+                        $(this).css({
+                            'cursor': 'pointer',
+                            'border':'6px solid grey'
+                        });
+
+                    },
+                    mouseout: function () {
+                        $(this).css({
+                            'border':'6px solid #ddd'
+                        });
+                    },
+
+                    click: function () {
+                        var x = $(this).attr('src');
+                        $('#top').fadeOut(10, function () {
+                            $(this).attr('src', x);
+                        }).fadeIn(10);
+                    },
+                    
+
+
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>

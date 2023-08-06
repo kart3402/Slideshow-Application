@@ -1,0 +1,47 @@
+﻿@model Slideshow.Models.slide
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Input</title>
+</head>
+<body>
+    <div> 
+        @using (Html.BeginForm("Input", "Show", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+        <table>
+            <tr>
+                <td>Slide ID</td>
+                <td>@Html.TextBoxFor(e => e.slide_id)</td>
+            </tr>
+            <tr>
+                <td>Slide Name</td>
+                <td>@Html.TextBoxFor(e => e.slide_name)</td>
+                <td>@Html.ValidationMessageFor(e => e.slide_name)</td>
+            </tr>
+            <tr>
+                <td>Slide Description</td>
+                <td>@Html.TextBoxFor(e => e.description_slide)</td>
+                <td>@Html.ValidationMessageFor(e => e.description_slide)</td>
+            </tr>
+            <tr>
+                <td>Select Photo for slide</td>
+                <td><input type="file" name="photo" multiple/></td>
+            </tr>
+            <tr>
+                <td>
+                    <input  type="submit" value=" Enter"/>
+                </td>
+            </tr>
+        </table>
+        }
+    </div>
+</body>
+</html>

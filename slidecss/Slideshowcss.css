@@ -1,0 +1,25 @@
+﻿
+
+#Mainimage {
+    border:2px solid blue;
+}
+#Mainimage img{
+    width:100%;
+    height:500px;
+}
+
+#Mainimage #Heading{
+    display: flex;
+    border: 4px solid blue;
+    flex-direction: column;
+    align-items: center;
+}
+    #footer {
+        display: flex;
+        justify-content: center;
+    }
+#footer .footerimage {
+    width: 100px;
+    height: 80px;
+    border: 6px solid #ddd;
+}
